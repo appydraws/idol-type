@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Question 1</title>
+</head>
+<body>
+  <div class="container">
+    <h2>You're backstage at a music show and your manager gives you 30 minutes of free time. What do you do?</h2>
+    <button onclick="choose('E')">Crash other groups’ waiting rooms to say hi and network</button>
+    <button onclick="choose('I')">Sit quietly in your corner, rehearse lines, and enjoy the silence</button>
+  </div>
+
+  <script>
+    function choose(trait) {
+      const score = JSON.parse(localStorage.getItem('mbti') || '{}');
+      score[trait] = (score[trait] || 0) + 1;
+      localStorage.setItem('mbti', JSON.stringify(score));
+      window.location.href = 'q2.html';
+    }
+  </script>
+</body>
+</html>
