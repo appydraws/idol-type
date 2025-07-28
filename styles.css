@@ -51,20 +51,7 @@ button:hover {
 }
 
 footer {
-  text-align: center;
-  padding: 0.4rem;
-  background: linear-gradient(135deg, #f8e6ff, #e0d4ff);
-  color: #5a2c84;
-  font-size: 0.95rem;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #dabfff;
-}
-
-
-footer {
-  background-color: #5a2c84;
+  background-color: #f0e0ff;
   text-align: center;
   padding: 0.8rem 1rem;
   font-size: 0.9rem;
