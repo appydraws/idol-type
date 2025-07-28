@@ -6,12 +6,13 @@
   <title>Question 2</title>
 </head>
 <body>
-  <div class="container">
-    <h2>You’re working on your solo concept. What’s your vibe?</h2>
-    <button onclick="choose('S')">A soulful track with traditional visuals—clean, classy, timeless </button>
-    <button onclick="choose('N')">A surreal MV about dreams collapsing inside a parallel dimension</button>
-  </div>
-
+  <main>
+    <div class="container">
+      <h2>You’re working on your solo concept. What’s your vibe?</h2>
+        <button onclick="choose('S')">A soulful track with traditional visuals—clean, classy, timeless </button>
+        <button onclick="choose('N')">A surreal MV about dreams collapsing inside a parallel dimension</button>
+    </div>
+  </main>
   <script>
     function choose(trait) {
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
