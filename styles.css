@@ -51,10 +51,20 @@ button:hover {
 }
 
 footer {
-  background-color: #f0e0ff;
+  background: transparent; /* blends with background */
   text-align: center;
-  padding: 0.8rem 1rem;
-  font-size: 0.9rem;
-  color: #7a4fb3;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  color: #9b6fc1; /* soft lilac tone that matches your theme */
   margin-top: auto;
+}
+
+footer a {
+  color: #9b6fc1;
+  text-decoration: none;
+  margin: 0 0.4rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
