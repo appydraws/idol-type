@@ -53,7 +53,7 @@ button:hover {
 footer {
   text-align: center;
   padding: 0.4rem;
-  background-color: #f3eaff;
+  background: linear-gradient(135deg, #f8e6ff, #e0d4ff);
   color: #5a2c84;
   font-size: 0.95rem;
   position: fixed;
