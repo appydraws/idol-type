@@ -1,12 +1,19 @@
+
 body {
   margin: 0;
   font-family: 'Comic Neue', cursive;
   background: linear-gradient(135deg, #f8e6ff, #e0d4ff);
   color: #5a2c84;
   display: flex;
+  flex-direction: column; 
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; 
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .container {
@@ -24,17 +31,18 @@ h1 {
   color: #a34dd1;
 }
 
+/* Question text */
 p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.5;
 }
 
+/* Answer buttons */
 button {
-  display: block; 
+  display: block;
   width: 100%;
-  margin: 0.8rem 0; 
-  margin-bottom: 1rem; 
+  margin: 0.8rem 0;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   background-color: #d6a7ff;
@@ -51,11 +59,11 @@ button:hover {
 }
 
 footer {
-  background: transparent; /* blends with background */
+  background: transparent;
   text-align: center;
   padding: 0.5rem 0;
   font-size: 0.85rem;
-  color: #9b6fc1; /* soft lilac tone that matches your theme */
+  color: #9b6fc1;
   margin-top: auto;
 }
 
