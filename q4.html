@@ -6,12 +6,13 @@
   <title>Question 4</title>
 </head>
 <body>
-  <div class="container">
-    <h2>You get a rare free day from your busy idol schedule. What’s your move?</h2>
-    <button onclick="choose('J')">Plan out your entire day, be it for relaxation or filled with your favorite activities</button>
-    <button onclick="choose('P')">Wake up whenever and see where the day takes you.</button>
-  </div>
-
+  <main>
+    <div class="container">
+      <h2>You get a rare free day from your busy idol schedule. What’s your move?</h2>
+        <button onclick="choose('J')">Plan out your entire day, be it for relaxation or filled with your favorite activities</button>
+        <button onclick="choose('P')">Wake up whenever and see where the day takes you.</button>
+    </div>
+ </main>
   <script>
     function choose(trait) {
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
