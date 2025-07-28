@@ -6,12 +6,13 @@
   <title>Question 3</title>
 </head>
 <body>
-  <div class="container">
-    <h2>A member forgets choreography during a live stage. What do you do?</h2>
-    <button onclick="choose('T')">Keep going, stay in formation, don't break character—efficiency first! Hopefully they'll catch up quickly.</button>
-    <button onclick="choose('F')">Try to subtly help them catch up or come up with a way to cover up their mistake quickly</button>
-  </div>
-
+  <main>
+    <div class="container">
+      <h2>A member forgets choreography during a live stage. What do you do?</h2>
+        <button onclick="choose('T')">Keep going, stay in formation, don't break character—efficiency first! Hopefully they'll catch up quickly.</button>
+        <button onclick="choose('F')">Try to subtly help them catch up or come up with a way to cover up their mistake quickly</button>
+    </div>
+</main>
   <script>
     function choose(trait) {
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
