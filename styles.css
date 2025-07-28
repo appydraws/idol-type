@@ -49,3 +49,27 @@ button {
 button:hover {
   background-color: #c07eff;
 }
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f3eaff;
+  color: #5a2c84;
+  font-size: 0.95rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #dabfff;
+}
+
+footer a {
+  color: #a34dd1;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #c07eff;
+  text-decoration: underline;
+}
