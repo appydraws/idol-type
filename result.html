@@ -17,7 +17,7 @@
       color: #5a2c84;
     }
 
-    .loading-screen {
+   .loading-screen {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -47,6 +47,7 @@
     @keyframes fadeOut {
       to { opacity: 0; visibility: hidden; }
     }
+
 
     .result-card {
       display: none;
@@ -78,7 +79,6 @@
     .home-link {
       margin-top: 1.5rem;
       font-size: 1rem;
-      display: none;
     }
 
     .home-link a {
@@ -98,9 +98,10 @@
 <body>
 
   <!-- Loading screen -->
-  <div id="loading-screen" class="loading-screen">
+  <div id="loading-screen">
     <span class="loading-text">Calculating your idol score</span>
   </div>
+
 
   <!-- Result cards -->
   <div id="result-container">
@@ -116,102 +117,36 @@
       <h2>ESFP – The Life of the Party</h2>
       <p>You're the sparkle on stage and off! Fans love your energy and spontaneity—every moment with you is iconic.</p>
     </div>
-
-    <!-- All 13 additional MBTI types -->
-    <div class="result-card" id="type-ISTJ" style="background-color: #FFD6BA;">
-      <h2>ISTJ – The Reliable Main Dancer</h2>
-      <p>You’re all about precision and discipline. Every move you make is sharp and powerful!</p>
-    </div>
-    <div class="result-card" id="type-ISFJ" style="background-color: #F1E7E7;">
-      <h2>ISFJ – The Warm-Hearted Support</h2>
-      <p>You’re the glue that holds the team together. Fans cherish your kindness and gentle strength.</p>
-    </div>
-    <div class="result-card" id="type-INFJ" style="background-color: #E69DB8;">
-      <h2>INFJ – The Visionary Idol</h2>
-      <p>You have a mysterious aura and deep purpose in your art. Fans are drawn to your quiet charisma.</p>
-    </div>
-    <div class="result-card" id="type-INTJ" style="background-color: #FFD0C7;">
-      <h2>INTJ – The Mastermind Producer</h2>
-      <p>You’re always building the next masterpiece in your mind. Quiet but incredibly impactful!</p>
-    </div>
-    <div class="result-card" id="type-ISTP" style="background-color: #FFFECE;">
-      <h2>ISTP – The Cool Choreographer</h2>
-      <p>You’re laid-back but deadly precise. When you move, the crowd goes wild.</p>
-    </div>
-    <div class="result-card" id="type-ISFP" style="background-color: #9FB3DF;">
-      <h2>ISFP – The Artistic Soul</h2>
-      <p>Your performances are pure poetry. Fans admire your grace and quiet passion.</p>
-    </div>
-    <div class="result-card" id="type-INTP" style="background-color: #9EC6F3;">
-      <h2>INTP – The Experimental Genius</h2>
-      <p>You’re unconventional, quirky, and a total trendsetter. You’re always 5 steps ahead!</p>
-    </div>
-    <div class="result-card" id="type-ESTP" style="background-color: #FCD8CD;">
-      <h2>ESTP – The Bold Showstopper</h2>
-      <p>You own the stage with your daring energy. There’s never a dull moment when you're around!</p>
-    </div>
-    <div class="result-card" id="type-ENFP" style="background-color: #FEEBF6;">
-      <h2>ENFP – The Bubbly Heartthrob</h2>
-      <p>Everyone is drawn to your chaotic good vibes! You light up the stage and your fandom's hearts.</p>
-    </div>
-    <div class="result-card" id="type-ENFJ" style="background-color: #EBD6FB;">
-      <h2>ENFJ – The Charismatic Mentor</h2>
-      <p>Empathetic and wise, you’re always lifting others up. Your fans admire your depth and sincerity.</p>
-    </div>
-    <div class="result-card" id="type-ESTJ" style="background-color: #687FE5;">
-      <h2>ESTJ – The Powerhouse Captain</h2>
-      <p>You’re organized, commanding, and always on top of things. You lead by example and it shows!</p>
-    </div>
-    <div class="result-card" id="type-ENTP" style="background-color: #BDDDE4;">
-      <h2>ENTP – The Wild Card</h2>
-      <p>Unpredictable, hilarious, and endlessly talented—your fans never know what’s next, and that’s the thrill!</p>
-    </div>
-    <div class="result-card" id="type-ESFJ" style="background-color: #FFF1D5;">
-      <h2>ESFJ – The Beloved All-Rounder</h2>
-      <p>You’re the fan favorite—friendly, polished, and ready to shine in any role!</p>
-    </div>
+    <!-- Add more result cards here with different types and colors -->
   </div>
 
   <!-- Return to home -->
-  <div class="home-link" id="homeLink">
+  <div class="home-link" style="display:none;" id="homeLink">
     <a href="index.html">← Return to Home</a>
   </div>
 
   <script>
+    // Simulate loading and score-based display
     const resultCards = {
       "INFP": document.getElementById("type-INFP"),
       "ENTJ": document.getElementById("type-ENTJ"),
       "ESFP": document.getElementById("type-ESFP"),
-      "ISTJ": document.getElementById("type-ISTJ"),
-      "ISFJ": document.getElementById("type-ISFJ"),
-      "INFJ": document.getElementById("type-INFJ"),
-      "INTJ": document.getElementById("type-INTJ"),
-      "ISTP": document.getElementById("type-ISTP"),
-      "ISFP": document.getElementById("type-ISFP"),
-      "INTP": document.getElementById("type-INTP"),
-      "ESTP": document.getElementById("type-ESTP"),
-      "ENFP": document.getElementById("type-ENFP"),
-      "ENFJ": document.getElementById("type-ENFJ"),
-      "ESTJ": document.getElementById("type-ESTJ"),
-      "ENTP": document.getElementById("type-ENTP"),
-      "ESFJ": document.getElementById("type-ESFJ")
+      // Add more types here
     };
 
     function calculateResultType() {
-      const storedType = localStorage.getItem("mbti");
-      if (!storedType || !resultCards[storedType]) {
-        return "INFP"; // fallback default
-      }
-      return storedType;
+      // Dummy logic: randomly select one MBTI type
+      const types = Object.keys(resultCards);
+      const selectedType = types[Math.floor(Math.random() * types.length)];
+      return selectedType;
     }
 
     window.onload = () => {
       setTimeout(() => {
-        document.getElementById("loading-screen").style.display = "none";
+        document.getElementById("loading").style.display = "none";
         const resultType = calculateResultType();
         resultCards[resultType].style.display = "block";
         document.getElementById("homeLink").style.display = "block";
-        localStorage.removeItem("mbti"); // reset
       }, 3500);
     };
   </script>
