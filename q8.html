@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Question 8</title>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <h2> Your group is rebranding with a new concept. You push for: </h2>
+      <button onclick="choose('N')"> A mysterious, otherworldly fantasy storyline.  </button>
+      <button onclick="choose('S')"> A clean-cut, trendy, school-uniform look. </button>
+    </div>
+  </main>
+  <script>
+    function choose(trait) {
+      const score = JSON.parse(localStorage.getItem('mbti') || '{}');
+      score[trait] = (score[trait] || 0) + 1;
+      localStorage.setItem('mbti', JSON.stringify(score));
+      window.location.href = 'q9.html';
+    }
+  </script>
+</body>
+</html>
