@@ -49,15 +49,15 @@
     }
 
     .result-card {
-      display: none;
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(194, 146, 255, 0.4);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 50px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      max-width: 500px;
-      margin-top: 3rem;
-    }
+      transition: all 0.3s ease-in-out;
+      }
 
     .result-card h2 {
       font-size: 2rem;
@@ -83,18 +83,18 @@
 
   <script>
     const mbtiResultMap = {
-      'INTJ': { title: 'The Mysterious Producer', color: '#8479d0', desc: 'You plan everything. Your vibe? Cold gaze, hot skills 🔮' },
+      'INTJ': { title: 'The Mysterious Producer', color: '#8479d0', desc: 'You plan everything. Your vibe? Cold gaze, hot skills' },
       'INTP': { title: 'The Indie Genius', color: '#a5e1ea', desc: 'You create weird music... and people love it. Always vibing.' },
       'ENTJ': { title: 'The Fierce Leader', color: '#fad2ff', desc: 'Sharp, strategic, and always camera-ready.' },
       'ENTP': { title: 'The Chaotic MC', color: '#fffdfd', desc: 'You talk, people laugh. You dance, people cheer. You win.' },
       'INFJ': { title: 'The Soft Visionary', color: '#f2f2f2', desc: 'You dream in lyrics. People cry when you sing. It’s a thing.' },
       'INFP': { title: 'The Dreamy Soloist', color: '#b88c8c', desc: 'Shy but powerful. Your fancams have 3M views for a reason.' },
-      'ENFJ': { title: 'The Heart of the Group', color: '#ddadad', desc: 'You give hugs, advice, and perfect high notes 💖' },
+      'ENFJ': { title: 'The Heart of the Group', color: '#ddadad', desc: 'You give hugs, advice, and perfect high notes' },
       'ENFP': { title: 'The Sunshine Idol', color: '#fcd9d9', desc: 'You walk in and it’s instantly springtime. Chaos & love!' },
       'ISTJ': { title: 'The Reliable Maknae', color: '#9fb9bf', desc: 'Always on time. Always correct. Idol standards were built on you.' },
       'ISFJ': { title: 'The Quiet Fan-Fav', color: '#aec8ce', desc: 'Soft-spoken, but your fancams? Legendary.' },
       'ESTJ': { title: 'The No-Nonsense Leader', color: '#8479d0', desc: 'You handle the schedules and hit the choreo HARD.' },
-      'ESFJ': { title: 'The Variety Show Queen/King', color: '#a5e1ea', desc: 'You know how to make people smile. MC energy 💫' },
+      'ESFJ': { title: 'The Variety Show Queen/King', color: '#a5e1ea', desc: 'You know how to make people smile. MC energy' },
       'ISTP': { title: 'The Cool Dancer', color: '#fad2ff', desc: 'Lowkey genius. Highkey bias-wrecker.' },
       'ISFP': { title: 'The Aesthetic King/Queen', color: '#fffdfd', desc: 'You ARE the concept. Visuals + talent? Iconic.' },
       'ESTP': { title: 'The Wild Card Idol', color: '#f2f2f2', desc: 'Every stage is an adventure. Fans never know what’s coming.' },
