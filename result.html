@@ -101,19 +101,32 @@
       'ESFP': { title: 'The Main Stage Slayer', color: '#b88c8c', desc: 'Born to perform. Lives for encores. Screams? Deserved.' }
     };
 
-    function calculateMBTI() {
-      // Sample mock logic — replace with actual score-based calculation
-      const resultType = localStorage.getItem('mbtiType') || 'ENFP'; // fallback
+function calculateMBTI() {
+  const scores = JSON.parse(localStorage.getItem('mbti') || '{}');
 
-      const data = mbtiResultMap[resultType];
-      if (data) {
-        const card = document.getElementById('resultCard');
-        document.getElementById('resultTitle').innerText = `${resultType}: ${data.title}`;
-        document.getElementById('resultDescription').innerText = data.desc;
-        card.style.backgroundColor = data.color;
-        card.style.display = 'block';
-      }
-    }
+  const resultType = [
+    (scores['E'] || 0) >= (scores['I'] || 0) ? 'E' : 'I',
+    (scores['S'] || 0) >= (scores['N'] || 0) ? 'S' : 'N',
+    (scores['T'] || 0) >= (scores['F'] || 0) ? 'T' : 'F',
+    (scores['J'] || 0) >= (scores['P'] || 0) ? 'J' : 'P'
+  ].join('');
+
+  const data = mbtiResultMap[resultType];
+  if (data) {
+    const card = document.getElementById('resultCard');
+    document.getElementById('resultTitle').innerText = `${resultType}: ${data.title}`;
+    document.getElementById('resultDescription').innerText = data.desc;
+    card.style.backgroundColor = data.color;
+    card.style.display = 'block';
+  } else {
+    document.getElementById('resultTitle').innerText = 'Something went wrong';
+    document.getElementById('resultDescription').innerText = 'Could not calculate your type.';
+  }
+
+  // Clear localStorage so quiz is one-time
+  localStorage.removeItem('mbti');
+}
+
 
     setTimeout(() => {
       document.getElementById('loadingScreen').style.display = 'none';
