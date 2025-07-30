@@ -18,7 +18,7 @@
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
       score[trait] = (score[trait] || 0) + 1;
       localStorage.setItem('mbti', JSON.stringify(score));
-      window.location.href = 'q11.html';
+      window.location.href = 'result.html';
     }
   </script>
 </body>
