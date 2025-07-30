@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Question 9</title>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <h2> You’re working on a new album. You focus on: </h2>
+      <button onclick="choose('J')"> Meeting deadlines and coordinating the release.  </button>
+      <button onclick="choose('P')"> Experimenting with sounds until something clicks.  </button>
+    </div>
+  </main>
+  <script>
+    function choose(trait) {
+      const score = JSON.parse(localStorage.getItem('mbti') || '{}');
+      score[trait] = (score[trait] || 0) + 1;
+      localStorage.setItem('mbti', JSON.stringify(score));
+      window.location.href = 'q10.html';
+    }
+  </script>
+</body>
+</html>
