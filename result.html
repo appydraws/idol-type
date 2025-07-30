@@ -104,51 +104,152 @@
 
 
   <!-- Result cards -->
-  <div id="result-container">
     <div class="result-card" id="type-INFP" style="background-color: #FFDCDC;">
-      <h2>INFP – The Dreamy Vocalist</h2>
-      <p>You bring emotional depth and ethereal energy to every performance. Your fans adore your authenticity and gentleness!</p>
+      <h2>INFP — The Soft-Spoken Dreamer</h2>
+      <p>You’re the quiet force behind the scenes, always creating beauty with emotion. You uplift your group with sincerity and calm.</p>
     </div>
-    <div class="result-card" id="type-ENTJ" style="background-color: #FFF2EB;">
-      <h2>ENTJ – The Fearless Leader</h2>
-      <p>You’re bold, strategic, and always three steps ahead. Your group looks to you for direction—and you never disappoint.</p>
-    </div>
-    <div class="result-card" id="type-ESFP" style="background-color: #FFE8CD;">
-      <h2>ESFP – The Life of the Party</h2>
-      <p>You're the sparkle on stage and off! Fans love your energy and spontaneity—every moment with you is iconic.</p>
-    </div>
-    <!-- Add more result cards here with different types and colors -->
-  </div>
 
+    <div class="result-card" id="type-INFJ" style="background-color: #FFF2EB;">
+      <h2>INFJ — The Mystical Leader</h2>
+      <p>Visionary and poetic, you guide the team with depth. Everyone looks to you for wisdom and warmth.</p>
+    </div>
+
+    <div class="result-card" id="type-INTP" style="background-color: #FFE8CD;">
+      <h2>INTP — The Brainy Producer</h2>
+      <p>You bring quirky logic and off-beat ideas that make your group unforgettable. You vibe with beats and deep thoughts.</p>
+    </div>
+
+    <div class="result-card" id="type-INTJ" style="background-color: #FFD6BA;">
+      <h2>INTJ — The Vision Architect</h2>
+      <p>You see the group’s future and build it with intention. Your plans always hit hard — in charts and hearts.</p>
+    </div>
+
+    <div class="result-card" id="type-ISFP" style="background-color: #F1E7E7;">
+      <h2>ISFP — The Aesthetic Muse</h2>
+      <p>Your vibe is ✨aesthetic✨. You express more through dance and visuals than words. Fans adore your authenticity.</p>
+    </div>
+
+    <div class="result-card" id="type-ISFJ" style="background-color: #E69DB8;">
+      <h2>ISFJ — The Nurturing Core</h2>
+      <p>Kind, organized, and the mom-friend of the group. You make sure nobody skips meals or misses rehearsal.</p>
+    </div>
+
+    <div class="result-card" id="type-ISTP" style="background-color: #FFD0C7;">
+      <h2>ISTP — The Cool Performer</h2>
+      <p>Lowkey but immensely talented. You’re the “surprise drop” energy in human form.</p>
+    </div>
+
+    <div class="result-card" id="type-ISTJ" style="background-color: #FFFECE;">
+      <h2>ISTJ — The Discipline Boss</h2>
+      <p>You run rehearsals like clockwork and remember every detail. People may fear your stare, but they also admire your drive.</p>
+    </div>
+
+    <div class="result-card" id="type-ENFP" style="background-color: #9FB3DF;">
+      <h2>ENFP — The Chaotic Heartthrob</h2>
+      <p>Spontaneous, loud, and full of love. You bring the energy to every interview, tour, and backstage live.</p>
+    </div>
+
+    <div class="result-card" id="type-ENFJ" style="background-color: #9EC6F3;">
+      <h2>ENFJ — The Charismatic Leader</h2>
+      <p>With a smile and a speech, you get the whole team (and fandom) in tears. You’re a natural-born idol leader.</p>
+    </div>
+
+    <div class="result-card" id="type-ENTP" style="background-color: #FCD8CD;">
+      <h2>ENTP — The Variety Show Legend</h2>
+      <p>You’re witty, unpredictable, and unforgettable. You never say no to a challenge or a prank cam.</p>
+    </div>
+
+    <div class="result-card" id="type-ENTJ" style="background-color: #FEEBF6;">
+      <h2>ENTJ — The Executive Star</h2>
+      <p>You’ll be CEO someday — but for now, you’re conquering the stage. You lead with confidence and precision.</p>
+    </div>
+
+    <div class="result-card" id="type-ESFP" style="background-color: #EBD6FB;">
+      <h2>ESFP — The Spotlight Magnet</h2>
+      <p>Born to perform, you shine brightest on stage and own every camera. Life is your music video.</p>
+    </div>
+
+    <div class="result-card" id="type-ESFJ" style="background-color: #687FE5;">
+      <h2>ESFJ — The Fan-Favorite</h2>
+      <p>Charming, loyal, and always looking after others. You remember every fan’s name and every member’s birthday.</p>
+    </div>
+
+    <div class="result-card" id="type-ESTP" style="background-color: #BDDDE4;">
+      <h2>ESTP — The Wild Card</h2>
+      <p>You’re the “YOLO” energy in the group. Quick with comebacks, slick on stage — everyone loves your chaos.</p>
+    </div>
+
+    <div class="result-card" id="type-ESTJ" style="background-color: #FFF1D5;">
+      <h2>ESTJ — The Task Captain</h2>
+      <p>You make the schedules, set the goals, and keep everyone in check. You’re the reason the team doesn’t fall apart.</p>
+    </div>
   <!-- Return to home -->
   <div class="home-link" style="display:none;" id="homeLink">
     <a href="index.html">← Return to Home</a>
   </div>
 
   <script>
-    // Simulate loading and score-based display
-    const resultCards = {
-      "INFP": document.getElementById("type-INFP"),
-      "ENTJ": document.getElementById("type-ENTJ"),
-      "ESFP": document.getElementById("type-ESFP"),
-      // Add more types here
-    };
+  const resultCards = {
+    "INFP": document.getElementById("type-INFP"),
+    "ENTJ": document.getElementById("type-ENTJ"),
+    "ESFP": document.getElementById("type-ESFP"),
+    // Add other types below
+    "ENFP": document.getElementById("type-ENFP"),
+    "ISFJ": document.getElementById("type-ISFJ"),
+    "INTJ": document.getElementById("type-INTJ"),
+    "ISTP": document.getElementById("type-ISTP"),
+    "ESTJ": document.getElementById("type-ESTJ"),
+    "INFJ": document.getElementById("type-INFJ"),
+    "ENFJ": document.getElementById("type-ENFJ"),
+    "ISTJ": document.getElementById("type-ISTJ"),
+    "ISFP": document.getElementById("type-ISFP"),
+    "ESFJ": document.getElementById("type-ESFJ"),
+    "INTP": document.getElementById("type-INTP"),
+    "ENTP": document.getElementById("type-ENTP"),
+    "ESTP": document.getElementById("type-ESTP")
+  };
 
-    function calculateResultType() {
-      // Dummy logic: randomly select one MBTI type
-      const types = Object.keys(resultCards);
-      const selectedType = types[Math.floor(Math.random() * types.length)];
-      return selectedType;
-    }
-
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-        const resultType = calculateResultType();
-        resultCards[resultType].style.display = "block";
-        document.getElementById("homeLink").style.display = "block";
-      }, 3500);
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      E: parseInt(params.get("E")) || 0,
+      I: parseInt(params.get("I")) || 0,
+      S: parseInt(params.get("S")) || 0,
+      N: parseInt(params.get("N")) || 0,
+      T: parseInt(params.get("T")) || 0,
+      F: parseInt(params.get("F")) || 0,
+      J: parseInt(params.get("J")) || 0,
+      P: parseInt(params.get("P")) || 0
     };
-  </script>
+  }
+
+  function calculateMBTI(scores) {
+    let mbti = '';
+    mbti += scores.E >= scores.I ? 'E' : 'I';
+    mbti += scores.S >= scores.N ? 'S' : 'N';
+    mbti += scores.T >= scores.F ? 'T' : 'F';
+    mbti += scores.J >= scores.P ? 'J' : 'P';
+    return mbti;
+  }
+
+  window.onload = () => {
+    setTimeout(() => {
+      const loading = document.getElementById("loading-screen");
+      if (loading) loading.style.display = "none";
+
+      const scores = getQueryParams();
+      const mbti = calculateMBTI(scores);
+
+      if (resultCards[mbti]) {
+        resultCards[mbti].style.display = "block";
+      } else {
+        alert("Oops! We couldn't determine your type.");
+      }
+
+      document.getElementById("homeLink").style.display = "block";
+    }, 3500);
+  };
+</script>
+
 </body>
 </html>
