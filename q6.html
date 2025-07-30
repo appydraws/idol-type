@@ -6,12 +6,13 @@
   <title>Question 6</title>
 </head>
 <body>
-  <div class="container">
-    <h2>You and your group will be going on a tour soon. How are you packing your bags</h2>
-    <button onclick="choose('J')">Already packed two days ago, complete with labeled outfits.</button>
-    <button onclick="choose('P')">Tossing things into your suitcase 30 mins before leaving. </button>
-  </div>
-
+  <main>
+    <div class="container">
+      <h2>You and your group will be going on a tour soon. How are you packing your bags</h2>
+      <button onclick="choose('J')">Already packed two days ago, complete with labeled outfits.</button>
+      <button onclick="choose('P')">Tossing things into your suitcase 30 mins before leaving. </button>
+    </div>
+  </main>
   <script>
     function choose(trait) {
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
