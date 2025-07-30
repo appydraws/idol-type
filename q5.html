@@ -6,12 +6,13 @@
   <title>Question 1</title>
 </head>
 <body>
-  <div class="container">
-    <h2>A rumor starts about you dating. Do you:</h2>
-    <button onclick="choose('T')">Release a firm statement with facts and timestamps. </button>
-    <button onclick="choose('F')">Post a personal letter to fans saying you’d never betray their trust.</button>
-  </div>
-
+  <main>
+    <div class="container">
+      <h2>A rumor starts about you dating. Do you:</h2>
+      <button onclick="choose('T')">Release a firm statement with facts and timestamps. </button>
+      <button onclick="choose('F')">Post a personal letter to fans saying you’d never betray their trust.</button>
+    </div>
+ </main>
   <script>
     function choose(trait) {
       const score = JSON.parse(localStorage.getItem('mbti') || '{}');
