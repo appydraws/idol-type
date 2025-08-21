@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concert Day Adventure!</title>
-  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <main>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white font-sans min-h-screen flex items-center justify-center p-4">
+  <main class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
     <div class="container">
-      <h1>🌸 What happens when your favourite idol's concert day turns into an adventure 🌸</h1>
-          <p>It’s the day of LUMINADE’s debut concert!<br>  
-    Will you end up front row, lost in the merch line, or even sneaking backstage?  
-    Your choices will decide your concert fate... 💫</p>
-      <button onclick="startQuiz()">Start the Adventure 🌸</button>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">Concert Day Adventure!</h1>
+      <p class="text-lg sm:text-xl leading-relaxed mb-8">What happens when your favourite idol's concert day turns into an adventure 🌸<br>
+        It’s the day of LUMINADE’s debut concert!<br>
+      Will you end up front row, lost in the merch line, or even sneaking backstage?
+      Your choices will decide your concert fate... 💫</p>
+      <button onclick="startAdventure()" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">Start the Adventure 🌸</button>
     </div>
   </main>
 
-  <footer>
-    <p>
-      <a href="index.html">Home</a> | 
-      <a href="https://github.com/appydraws/idol-type" target="_blank">GitHub</a> | 
-      <a href="https://linktr.ee/appydraws" target="_blank">Linktree</a> | 
-      <a href="mailto:appydraws0808@gmail.com">Contact</a>
-    </p>
-  </footer>
-
   <script>
-    function startQuiz() {
-      localStorage.clear();
-      window.location.href = "q1.html";
+    function startAdventure() {
+      window.location.href = '2_the_day_begins.html';
     }
   </script>
 </body>
