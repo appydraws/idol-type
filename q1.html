@@ -6,20 +6,22 @@
   <title>Question 1</title>
 </head>
 <body>
- <main>
-   <div class="container">
-      <h2>You're backstage at a music show and your manager gives you 30 minutes of free time. What do you do?</h2>
-        <button onclick="choose('E')">Crash other groups’ waiting rooms to say hi and network</button>
-        <button onclick="choose('I')">Sit quietly in your corner, rehearse lines, and enjoy the silence</button>
-   </div>
+<main>
+  <div class="container">
+    <h2>You’ve just arrived at the venue for LUMINADE’s debut concert! What’s your first move?</h2>
+    <button onclick="choose('merchMaster')">Rush straight to the merch booth before anything sells out</button>
+    <button onclick="choose('frontRow')">Sprint inside to claim the perfect front row spot</button>
+    <button onclick="choose('secretFan')">Sit outside sketching the venue while waiting for doors to open</button>
+  </div>
 </main>
-  <script>
-    function choose(trait) {
-      const score = JSON.parse(localStorage.getItem('mbti') || '{}');
-      score[trait] = (score[trait] || 0) + 1;
-      localStorage.setItem('mbti', JSON.stringify(score));
-      window.location.href = 'q2.html';
-    }
-  </script>
+
+<script>
+  function choose(path) {
+    const scores = JSON.parse(localStorage.getItem('adventure') || '{}');
+    scores[path] = (scores[path] || 0) + 1;
+    localStorage.setItem('adventure', JSON.stringify(scores));
+    window.location.href = 'q2.html'; // go to next question
+  }
+</script>
 </body>
 </html>
