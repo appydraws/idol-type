@@ -1,4 +1,4 @@
-# idol-type quiz 
+# idol-adventure Quiz 
 
 Hey everyone! Basically made this one for our Shoujo and Josei anime server event!
 
