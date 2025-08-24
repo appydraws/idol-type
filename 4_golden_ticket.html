@@ -5,14 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUMINADE: A Luminous Discovery</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 5px #fde047, 0 0 10px #fde047, 0 0 20px #fde047;
+      }
+      50% {
+        box-shadow: 0 0 20px #fde047, 0 0 40px #fde047, 0 0 60px #fde047;
+      }
+    }
+    .ticket-container {
+      position: relative;
+      width: 280px;
+      height: 150px; /* Increased height */
+      margin: 2rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      animation: glow 2s ease-in-out infinite;
+    }
+    .ticket-perforated-line {
+      position: absolute;
+      left: 70%;
+      top: 0;
+      width: 30%;
+      height: 100%;
+      border-left: 2px dashed #000;
+      background-color: transparent;
+    }
+    .ticket-background {
+      width: 100%;
+      height: 100%;
+      background-color: #fde047;
+    }
+    .ticket-frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      height: 85%;
+      border: 2px solid #000;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white font-sans min-h-screen flex items-center justify-center p-4">
   <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
     <h2 class="text-3xl sm:text-4xl font-bold mb-4">A Luminous Discovery</h2>
     <p class="text-lg sm:text-xl leading-relaxed mb-8">
-      You can't resist your curiosity. You quickly unzip your bag and peer inside. Nestled amongst your belongings is a luminous, holographic **Golden Ticket**. It pulsates with a faint light, a unique, special pass to something unknown. You have no idea how it got there or what it does. A powerful mix of excitement and unease swirls inside you, but your curiosity wins. You wave the ticket around, and to your surprise, its light glows stronger, pulling you in a particular direction. You decide to follow this strange pull and see where it leads.
+      You can't resist your curiosity. You quickly unzip your bag and peer inside. Nestled amongst your belongings is a luminous, holographic **Golden Ticket**. You have no idea how it got there or what it does. A powerful mix of excitement and unease swirls inside you, but your curiosity wins. You wave the ticket around, and to your surprise, its light glows stronger, pulling you in a particular direction. You decide to follow this strange pull and see where it leads.
     </p>
-    <a href="5_backstage_pass.html" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+
+    <!-- The actual animated ticket element -->
+    <div class="ticket-container">
+      <div class="ticket-background"></div>
+      <div class="ticket-frame"></div>
+      <div class="ticket-perforated-line"></div>
+    </div>
+
+    <a href="5_the_discovery.html" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
       Follow the Light
     </a>
   </div>
