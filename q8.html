@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="styles.css" />
-  <title>Question 8</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Private Concert</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <main>
-    <div class="container">
-      <h2> Your group is rebranding with a new concept. You push for: </h2>
-      <button onclick="choose('N')"> A mysterious, otherworldly fantasy storyline.  </button>
-      <button onclick="choose('S')"> A clean-cut, trendy, school-uniform look. </button>
-    </div>
-  </main>
-  <script>
-    function choose(trait) {
-      const score = JSON.parse(localStorage.getItem('mbti') || '{}');
-      score[trait] = (score[trait] || 0) + 1;
-      localStorage.setItem('mbti', JSON.stringify(score));
-      window.location.href = 'q9.html';
-    }
-  </script>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white font-sans min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-4">A Private Performance</h2>
+    <p class="text-lg sm:text-xl leading-relaxed mb-8">
+      You decide to stay. The band continues their soundcheck, but now they're playing just for you. It's an intimate, unforgettable experience. Afterward, the group hands you a signed, exclusive poster, with a note saying: "We hope you enjoyed the pre-show, but please keep this a secret". As you take leave for the main event, you can feel the energy of the main concert space.
+    </p>
+    <a href="10_the_concert.html" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+      Head to the concert
+    </a>
+  </div>
 </body>
 </html>
