@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINADE: A Dreamlike Return</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
+  
+  <div class="flex-grow flex items-center justify-center p-4">
+    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+      <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4"></h2>
+      <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8"></p>
+      
+      <div id="options-container" class="flex flex-col sm:flex-row gap-4 w-full justify-center"></div>
+    </div>
+  </div>
+
+  <script>
+    // Define the story pages with their content
+    const pages = [
+      {
+        id: "join_dance",
+        title: "Join their dance",
+        text: "You lose yourself in the dance, your movements guided by the fairies’ melody. The music and steps feel strangely familiar, as if you've done this before. Every note and spin seems to tell a story you can almost remember.",
+        options: [{ text: "Ask if it's related to LUMINADE", action: () => loadPage(1) }]
+      },
+      {
+        id: "wake_up_call",
+        title: "The Dream Unravels",
+        text: "You ask them if their song is related to LUMINADE. The fairies stop dancing. A look of panic crosses their faces as they begin to murmur amongst themselves, their sparkling wings fluttering nervously. Everything starts to shimmer and fade.",
+        options: [{ text: "Accept the return", action: () => loadPage(2) }]
+      },
+      {
+        id: "back_at_gate",
+        title: "Back to Reality",
+        text: "Suddenly, you are standing back at the concert venue's main gate. The crowd is bustling, the bass is thrumming, and your friends are still waiting for you. You feel the cool air on your skin and wonder if you just imagined the entire thing. Was it all a dream? Was it really related to LUMINADE?",
+        options: [] // End of the story
+      }
+    ];
+
+    // Function to load a specific page by its index
+    function loadPage(pageIndex) {
+      const page = pages[pageIndex];
+      const storyTitle = document.getElementById('story-title');
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+
+      storyTitle.textContent = page.title;
+      storyText.textContent = page.text;
+      optionsContainer.innerHTML = '';
+
+      if (page.options) {
+        page.options.forEach(option => {
+          const button = document.createElement('a');
+          button.href = "#";
+          button.textContent = option.text;
+          button.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+          button.onclick = (e) => {
+            e.preventDefault();
+            option.action();
+          };
+          optionsContainer.appendChild(button);
+        });
+      }
+    }
+
+    // Start the story on load, with the first page
+    window.onload = () => loadPage(0);
+  </script>
+
+</body>
+</html>
