@@ -27,6 +27,12 @@
       align-self: flex-start;
       border-bottom-left-radius: 0.5rem;
     }
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center items horizontally */
+      justify-content: center; /* Center items vertically */
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
@@ -36,11 +42,11 @@
       <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4 transition-colors duration-500"></h2>
       <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8 transition-opacity duration-500"></p>
 
-      <!-- The options container is now a centered flexbox -->
-      <div id="options-container" class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
-
       <!-- This is the container for chat messages, styled like a chat window -->
       <div id="chat-container" class="flex flex-col w-full space-y-2"></div>
+
+      <!-- The options container is now a centered flexbox -->
+      <div id="options-container" class="options-container flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
     </div>
   </div>
 
@@ -141,7 +147,7 @@
     // Function to show the single ending page with dynamic text
     function showEnding(choice, text) {
       const finalPage = pages.find(p => p.id === "final_page");
-      finalPage.text = text + " Now, with your favorite booth explored, you head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
+      finalPage.text = text + " Now, with your favorite booths explored, you head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
       loadPage(pages.indexOf(finalPage));
     }
 
