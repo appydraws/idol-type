@@ -10,10 +10,6 @@
     body {
       font-family: 'Inter', sans-serif;
     }
-    /*
-      Chat bubble styling to create a conversational feel.
-      This is a common design pattern for stories or chats.
-    */
     .chat-bubble {
       max-width: 80%;
       padding: 1rem;
@@ -43,17 +39,51 @@
       <!-- The options container is now a centered flexbox -->
       <div id="options-container" class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
 
+      <!-- This is the container for chat messages, styled like a chat window -->
+      <div id="chat-container" class="flex flex-col w-full space-y-2"></div>
     </div>
   </div>
 
   <script>
     // The main data structure for the interactive story
     const pages = [
-      // Page 1: Choosing a booth
+      // Page 1: Arriving at the gate
+      {
+        id: "main_gate",
+        title: "The Main Gate",
+        text: "You arrive at the main gate of the concert venue. The air is buzzing with excitement, and a sea of people fills the plaza. The bass of the pre-show music thrums through your shoes. Where are your friends?",
+        options: [
+          { text: "Check your group chat", action: () => loadPage(1) }
+        ]
+      },
+      // Page 2: Checking the group chat
+      {
+        id: "group_chat",
+        title: "The Group Chat",
+        text: "You pull out your phone, the screen lighting up with a flood of messages from your friends in the group chat.",
+        chat: [
+          { sender: "Leo", text: "Yo, anyone here yet? I'm by the huge statue of the band's mascot." },
+          { sender: "Chloe", text: "I'm with Leo! Found the mascot. It's awesome. You have to come see it." },
+          { sender: "You", text: "I'm heading your way now. Just got through security." }
+        ],
+        options: [
+          { text: "Find your friends", action: () => loadPage(2) }
+        ]
+      },
+      // Page 3: Meeting up with friends
+      {
+        id: "meet_friends",
+        title: "Meeting Up",
+        text: "You weave through the crowd, past a massive statue of a roaring mascot, and spot Leo and Chloe waving frantically. You've finally met up with your friends. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?' Chloe adds, 'Let's check out a few different booths before we decide what to do.'",
+        options: [
+          { text: "Explore the booths", action: () => loadPage(3) }
+        ]
+      },
+      // Page 4: Choosing a booth
       {
         id: "booth_choice",
         title: "Booths and Fan Fun",
-        text: "You've finally met up with your friends. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?' Chloe adds, 'Let's check out a few different booths before we decide what to do.'",
+        text: "Chloe pulls you toward the different booths. There are so many options!",
         options: [
           { text: "The VR Experience", action: () => showEnding("vr_booth", "The VR Experience Booth was your favorite. You got to 'fly' over the virtual stage, experiencing a whole new perspective of the show. You feel like a rockstar, even if just for a moment.") },
           { text: "The Tattoo Booth", action: () => showEnding("tattoo_booth", "The Tattoo Booth was a must-see. You get a temporary tattoo of the band's logo on your arm, a perfect way to show your dedication without the commitment. The artist even gave you a free sticker.") },
@@ -78,12 +108,23 @@
       const storyTitle = document.getElementById('story-title');
       const storyText = document.getElementById('story-text');
       const optionsContainer = document.getElementById('options-container');
+      const chatContainer = document.getElementById('chat-container');
       
       const page = pages[pageIndex];
       storyTitle.textContent = page.title;
       storyText.textContent = page.text;
-
       optionsContainer.innerHTML = '';
+      chatContainer.innerHTML = '';
+
+      if (page.chat) {
+        // Render chat messages
+        page.chat.forEach(message => {
+          const chatBubble = document.createElement('div');
+          chatBubble.textContent = `${message.sender}: ${message.text}`;
+          chatBubble.className = `chat-bubble text-white ${message.sender === 'You' ? 'sent' : 'received'}`;
+          chatContainer.appendChild(chatBubble);
+        });
+      }
 
       if (page.options) {
         // Render buttons for interactive choices
