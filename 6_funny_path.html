@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINADE: Forest of Follies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes floatAndPulse {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-10px) scale(1.05);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+    .berry-animation {
+      animation: floatAndPulse 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
+  
+  <div class="flex-grow flex items-center justify-center p-4">
+    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Forest of Follies</h2>
+      <p class="text-lg sm:text-xl leading-relaxed mb-8">
+        You almost think that you are lost, but then out of nowhere, you see someone nearby. It's a furry, goofy-eyed creature that scuttles over and offers you a berry with a painted-on smile.
+      </p>
+
+      <!-- The new berry image as an SVG with animation -->
+      <div class="my-8 berry-animation">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="h-24 w-24">
+          <title>A glowing magical berry</title>
+          <!-- Berry base -->
+          <circle cx="50" cy="65" r="30" fill="#9C27B0" class="stroke-4 stroke-white/20"/>
+          <!-- Highlight -->
+          <path d="M 65 50 C 70 40, 80 40, 85 50" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+          <!-- Glow effect -->
+          <filter id="glow">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"></feGaussianBlur>
+            <feMerge>
+              <feMergeNode in="blur"></feMergeNode>
+              <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+          </filter>
+          <circle cx="50" cy="65" r="30" fill="#A020F0" style="filter:url(#glow);" />
+        </svg>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+        <a href="7_berry_enchantment.html" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+          Eat the glowing berry
+        </a>
+        <a href="7_remember.html" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+          Politely decline
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-auto text-center text-xs text-gray-400 p-4">
+    <a href="https://storyset.com/nature" target="_blank" class="hover:underline">Nature illustrations by Storyset</a>
+  </footer>
+</body>
+</html>
