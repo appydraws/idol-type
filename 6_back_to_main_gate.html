@@ -43,10 +43,6 @@
       <!-- The options container is now a centered flexbox -->
       <div id="options-container" class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
 
-      <button id="next-button" onclick="window.location.reload()" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg hidden">
-      Start Over
-      </button>
-
     </div>
   </div>
 
@@ -72,7 +68,6 @@
         id: "final_page",
         title: "The Main Event",
         text: "", // This will be set dynamically
-        buttonText: "Start Over"
       }
     ];
 
@@ -83,14 +78,12 @@
       const storyTitle = document.getElementById('story-title');
       const storyText = document.getElementById('story-text');
       const optionsContainer = document.getElementById('options-container');
-      const nextButton = document.getElementById('next-button');
       
       const page = pages[pageIndex];
       storyTitle.textContent = page.title;
       storyText.textContent = page.text;
 
       optionsContainer.innerHTML = '';
-      nextButton.classList.add('hidden');
 
       if (page.options) {
         // Render buttons for interactive choices
@@ -101,10 +94,6 @@
           button.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
           optionsContainer.appendChild(button);
         });
-      } else {
-        // Render a single "Next" or "Start Over" button
-        nextButton.textContent = page.buttonText;
-        nextButton.classList.remove('hidden');
       }
     }
 
