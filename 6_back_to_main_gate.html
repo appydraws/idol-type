@@ -4,156 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Concert Journey</title>
+  <!-- Link to Tailwind CSS for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Import the Inter font for a modern look */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
     body {
       font-family: 'Inter', sans-serif;
     }
-    .chat-bubble {
-      max-width: 80%;
-      padding: 1rem;
-      border-radius: 1.5rem;
-      margin-bottom: 0.5rem;
-      position: relative;
-    }
-    .chat-bubble.sent {
-      background-color: #7c3aed; /* Purple-700 */
-      align-self: flex-end;
-      border-bottom-right-radius: 0.5rem;
-    }
-    .chat-bubble.received {
-      background-color: #4b5563; /* Gray-600 */
-      align-self: flex-start;
-      border-bottom-left-radius: 0.5rem;
-    }
-    .options-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Center items horizontally */
-      justify-content: center; /* Center items vertically */
-    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col items-center justify-center p-4">
   
-  <div class="flex-grow flex items-center justify-center p-4">
-    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
-      <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4 transition-colors duration-500"></h2>
-      <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8 transition-opacity duration-500"></p>
+  <!-- Main content container with a frosted glass effect -->
+  <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+    <h1 class="text-4xl sm:text-5xl font-bold mb-4">At the main gate</h1>
+    <p class="text-lg sm:text-xl leading-relaxed mb-8">
+      You arrive at the main gate of the concert venue. The air is buzzing with excitement, and a sea of people fills the front. The bass of the pre-show music thrums through your shoes. But where are your friends?
+    </p>
 
-      <!-- This is the container for chat messages, styled like a chat window -->
-      <div id="chat-container" class="flex flex-col w-full space-y-2"></div>
-
-      <!-- The options container is now a centered flexbox -->
-      <div id="options-container" class="options-container flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
-    </div>
+    <!-- Call-to-action button to start the experience -->
+    <a href="7_groupchat.html" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg">Check your group chat</a>
   </div>
-
-  <script>
-    // The main data structure for the interactive story
-    const pages = [
-      // Page 1: Arriving at the gate
-      {
-        id: "main_gate",
-        title: "The Main Gate",
-        text: "You arrive at the main gate of the concert venue. The air is buzzing with excitement, and a sea of people fills the plaza. The bass of the pre-show music thrums through your shoes. Where are your friends?",
-        options: [
-          { text: "Check your group chat", action: () => loadPage(1) }
-        ]
-      },
-      // Page 2: Checking the group chat
-      {
-        id: "group_chat",
-        title: "The Group Chat",
-        text: "You pull out your phone, the screen lighting up with a flood of messages from your friends in the group chat.",
-        chat: [
-          { sender: "Leo", text: "Yo, anyone here yet? I'm by the huge statue of the band's mascot." },
-          { sender: "Chloe", text: "I'm with Leo! Found the mascot. It's awesome. You have to come see it." },
-          { sender: "You", text: "I'm heading your way now. Just got through security." }
-        ],
-        options: [
-          { text: "Find your friends", action: () => loadPage(2) }
-        ]
-      },
-      // Page 3: Meeting up with friends
-      {
-        id: "meet_friends",
-        title: "Meeting Up",
-        text: "You weave through the crowd, past a massive statue of a roaring mascot, and spot Leo and Chloe waving frantically. You've finally met up with your friends. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?' Chloe adds, 'Let's check out a few different booths before we decide what to do.'",
-        options: [
-          { text: "Explore the booths", action: () => loadPage(3) }
-        ]
-      },
-      // Page 4: Choosing a booth
-      {
-        id: "booth_choice",
-        title: "Booths and Fan Fun",
-        text: "Chloe pulls you toward the different booths. There are so many options!",
-        options: [
-          { text: "The VR Experience", action: () => showEnding("vr_booth", "The VR Experience Booth was your favorite. You got to 'fly' over the virtual stage, experiencing a whole new perspective of the show. You feel like a rockstar, even if just for a moment.") },
-          { text: "The Tattoo Booth", action: () => showEnding("tattoo_booth", "The Tattoo Booth was a must-see. You get a temporary tattoo of the band's logo on your arm, a perfect way to show your dedication without the commitment. The artist even gave you a free sticker.") },
-          { text: "The Photo Booth", action: () => showEnding("photo_booth", "You and your friends pile into the Photo Booth. You strike a series of goofy poses, and the resulting strip of photos will be a cherished memory of the night. You'll definitely be putting this on your fridge.") },
-          { text: "The Fan Art Exhibit", action: () => showEnding("fan_art", "The Fan Art Exhibit blew your mind. The sheer creativity and talent on display was incredible. You even spot a piece of art inspired by your favorite song, making you feel a deeper connection to the community.") },
-          { text: "The Custom T-Shirt Booth", action: () => showEnding("tshirt_booth", "At the Custom T-Shirt Booth, you design your own shirt with a funny quote from the band's last album. It's one-of-a-kind and a perfect keepsake from the concert. It's an instant conversation starter.") },
-          { text: "The Live Graffiti Wall", action: () => showEnding("graffiti_wall", "The Live Graffiti Wall was the most fun. You and your friends get to contribute to a huge mural, leaving your mark on the event. You're a part of the bigger picture, both literally and figuratively.") }
-        ]
-      },
-      // The single ending page now receives dynamic content
-      {
-        id: "final_page",
-        title: "The Main Event",
-        text: "", // This will be set dynamically
-      }
-    ];
-
-    let currentPage = 0;
-
-    // Function to load the content for a given page index
-    function loadPage(pageIndex) {
-      const storyTitle = document.getElementById('story-title');
-      const storyText = document.getElementById('story-text');
-      const optionsContainer = document.getElementById('options-container');
-      const chatContainer = document.getElementById('chat-container');
-      
-      const page = pages[pageIndex];
-      storyTitle.textContent = page.title;
-      storyText.textContent = page.text;
-      optionsContainer.innerHTML = '';
-      chatContainer.innerHTML = '';
-
-      if (page.chat) {
-        // Render chat messages
-        page.chat.forEach(message => {
-          const chatBubble = document.createElement('div');
-          chatBubble.textContent = `${message.sender}: ${message.text}`;
-          chatBubble.className = `chat-bubble text-white ${message.sender === 'You' ? 'sent' : 'received'}`;
-          chatContainer.appendChild(chatBubble);
-        });
-      }
-
-      if (page.options) {
-        // Render buttons for interactive choices
-        page.options.forEach(option => {
-          const button = document.createElement('button');
-          button.textContent = option.text;
-          button.onclick = option.action;
-          button.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
-          optionsContainer.appendChild(button);
-        });
-      }
-    }
-
-    // Function to show the single ending page with dynamic text
-    function showEnding(choice, text) {
-      const finalPage = pages.find(p => p.id === "final_page");
-      finalPage.text = text + " Now, with your favorite booths explored, you head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
-      loadPage(pages.indexOf(finalPage));
-    }
-
-    // Start the story by loading the first page
-    window.onload = () => loadPage(currentPage);
-  </script>
 
 </body>
 </html>
