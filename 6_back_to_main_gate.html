@@ -10,6 +10,27 @@
     body {
       font-family: 'Inter', sans-serif;
     }
+    /*
+      Chat bubble styling to create a conversational feel.
+      This is a common design pattern for stories or chats.
+    */
+    .chat-bubble {
+      max-width: 80%;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .chat-bubble.sent {
+      background-color: #7c3aed; /* Purple-700 */
+      align-self: flex-end;
+      border-bottom-right-radius: 0.5rem;
+    }
+    .chat-bubble.received {
+      background-color: #4b5563; /* Gray-600 */
+      align-self: flex-start;
+      border-bottom-left-radius: 0.5rem;
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
@@ -19,71 +40,61 @@
       <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4 transition-colors duration-500"></h2>
       <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8 transition-opacity duration-500"></p>
 
-      <div id="options-container" class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8"></div>
+      <!-- The options container is now a centered flexbox -->
+      <div id="options-container" class="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center items-center w-full"></div>
 
-      <button id="next-button" onclick="nextPage()" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg hidden">
+      <button id="next-button" onclick="window.location.reload()" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg hidden">
+      Start Over
       </button>
 
     </div>
   </div>
 
   <script>
+    // The main data structure for the interactive story
     const pages = [
-      // Page 1: At the venue gate and checking the group chat
+      // Page 1: Choosing a booth
       {
-        title: "At the Venue Gate",
-        text: "You're finally here. The line for the main gate stretches out, filled with a sea of fellow fans. The low buzz of conversation is punctuated by excited shouts as people take photos. You pull out your phone, and the group chat is already buzzing.",
-        options: [
-          { text: "Check the group chat", action: () => nextPage() }
-        ]
-      },
-      // Page 2: Finding friends
-      {
-        title: "Finding the Crew",
-        text: "You find a moment to check your phone. The group chat is a mix of memes and 'where are you' messages. You spot Chloe's message with a picture of a giant light-up sign. 'Look for us by the main gate!' The race is on.",
-        options: [
-          { text: "Look for your friends", action: () => nextPage() }
-        ]
-      },
-      // Page 3: Choosing a booth
-      {
+        id: "booth_choice",
         title: "Booths and Fan Fun",
-        text: "You spot your friends and rush to them, exchanging high-fives and hugs. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?'",
+        text: "You've finally met up with your friends. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?' Chloe adds, 'Let's check out a few different booths before we decide what to do.'",
         options: [
-          { text: "Head to the merch booth first", action: () => showFinalPage("merch") },
-          { text: "Let's check out the fan experience zone", action: () => showFinalPage("fan_zone") }
+          { text: "The VR Experience", action: () => showEnding("vr_booth", "The VR Experience Booth was your favorite. You got to 'fly' over the virtual stage, experiencing a whole new perspective of the show. You feel like a rockstar, even if just for a moment.") },
+          { text: "The Tattoo Booth", action: () => showEnding("tattoo_booth", "The Tattoo Booth was a must-see. You get a temporary tattoo of the band's logo on your arm, a perfect way to show your dedication without the commitment. The artist even gave you a free sticker.") },
+          { text: "The Photo Booth", action: () => showEnding("photo_booth", "You and your friends pile into the Photo Booth. You strike a series of goofy poses, and the resulting strip of photos will be a cherished memory of the night. You'll definitely be putting this on your fridge.") },
+          { text: "The Fan Art Exhibit", action: () => showEnding("fan_art", "The Fan Art Exhibit blew your mind. The sheer creativity and talent on display was incredible. You even spot a piece of art inspired by your favorite song, making you feel a deeper connection to the community.") },
+          { text: "The Custom T-Shirt Booth", action: () => showEnding("tshirt_booth", "At the Custom T-Shirt Booth, you design your own shirt with a funny quote from the band's last album. It's one-of-a-kind and a perfect keepsake from the concert. It's an instant conversation starter.") },
+          { text: "The Live Graffiti Wall", action: () => showEnding("graffiti_wall", "The Live Graffiti Wall was the most fun. You and your friends get to contribute to a huge mural, leaving your mark on the event. You're a part of the bigger picture, both literally and figuratively.") }
         ]
       },
-      // Page 4: The final page (Merch Booth ending)
+      // The single ending page now receives dynamic content
       {
+        id: "final_page",
         title: "The Main Event",
-        text: "You and your friends brave the long merch line, but it's worth it. You snag the last limited edition tour shirt and a matching hoodie. With your haul in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.",
-        buttonText: "Start Over"
-      },
-      // Page 5: The final page (Fan Zone ending)
-      {
-        title: "The Main Event",
-        text: "You and your friends head to the fan experience zone, where you play a trivia game about the band. You win a signed poster! With your prize in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.",
+        text: "", // This will be set dynamically
         buttonText: "Start Over"
       }
     ];
 
     let currentPage = 0;
 
+    // Function to load the content for a given page index
     function loadPage(pageIndex) {
       const storyTitle = document.getElementById('story-title');
       const storyText = document.getElementById('story-text');
       const optionsContainer = document.getElementById('options-container');
       const nextButton = document.getElementById('next-button');
       
-      storyTitle.textContent = pages[pageIndex].title;
-      storyText.textContent = pages[pageIndex].text;
+      const page = pages[pageIndex];
+      storyTitle.textContent = page.title;
+      storyText.textContent = page.text;
 
       optionsContainer.innerHTML = '';
       nextButton.classList.add('hidden');
 
-      if (pages[pageIndex].options) {
-        pages[pageIndex].options.forEach(option => {
+      if (page.options) {
+        // Render buttons for interactive choices
+        page.options.forEach(option => {
           const button = document.createElement('button');
           button.textContent = option.text;
           button.onclick = option.action;
@@ -91,27 +102,20 @@
           optionsContainer.appendChild(button);
         });
       } else {
-        nextButton.textContent = pages[pageIndex].buttonText;
-        nextButton.onclick = () => window.location.reload();
+        // Render a single "Next" or "Start Over" button
+        nextButton.textContent = page.buttonText;
         nextButton.classList.remove('hidden');
       }
     }
 
-    function nextPage() {
-      currentPage++;
-      if (currentPage < pages.length) {
-        loadPage(currentPage);
-      }
+    // Function to show the single ending page with dynamic text
+    function showEnding(choice, text) {
+      const finalPage = pages.find(p => p.id === "final_page");
+      finalPage.text = text + " Now, with your favorite booth explored, you head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
+      loadPage(pages.indexOf(finalPage));
     }
 
-    function showFinalPage(choice) {
-      if (choice === "merch") {
-        loadPage(3); // Load merch ending page
-      } else {
-        loadPage(4); // Load fan zone ending page
-      }
-    }
-
+    // Start the story by loading the first page
     window.onload = () => loadPage(currentPage);
   </script>
 
