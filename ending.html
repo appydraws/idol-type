@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Concert Journey - The Main Event</title>
+  <title>A Concert Journey - The End</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -12,37 +12,15 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col items-center justify-center p-4">
-  
-  <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-4">The Main Event</h2>
-    <p id="ending-text" class="text-lg sm:text-xl leading-relaxed mb-8"></p>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
 
-    <!-- Return to Home button -->
-    <a href="index.html" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg">Return to Home</a>
+  <div class="flex-grow flex items-center justify-center p-4">
+    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">The Final Song</h2>
+      <p class="text-lg sm:text-xl leading-relaxed mb-8">After exploring the booths, you and your friends head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color. The crowd roars as the band appears, and you know this is a night you'll never forget.</p>
+      
+      <a href="index.html" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg">Start Over</a>
+    </div>
   </div>
-
-  <script>
-    // This object maps the URL parameter to the correct ending text.
-    const endings = {
-      vr_booth: "The VR Experience Booth was your favorite. You got to 'fly' over the virtual stage, experiencing a whole new perspective of the show. You feel like a rockstar, even if just for a moment.",
-      tattoo_booth: "The Tattoo Booth was a must-see. You get a temporary tattoo of the band's logo on your arm, a perfect way to show your dedication without the commitment. The artist even gave you a free sticker.",
-      photo_booth: "You and your friends pile into the Photo Booth. You strike a series of goofy poses, and the resulting strip of photos will be a cherished memory of the night. You'll definitely be putting this on your fridge.",
-      fan_art: "The Fan Art Exhibit blew your mind. The sheer creativity and talent on display was incredible. You even spot a piece of art inspired by your favorite song, making you feel a deeper connection to the community.",
-      tshirt_booth: "At the Custom T-Shirt Booth, you design your own shirt with a funny quote from the band's last album. It's one-of-a-kind and a perfect keepsake from the concert. It's an instant conversation starter.",
-      graffiti_wall: "The Live Graffiti Wall was the most fun. You and your friends get to contribute to a huge mural, leaving your mark on the event. You're a part of the bigger picture, both literally and figuratively."
-    };
-
-    // Get the choice from the URL query string.
-    const urlParams = new URLSearchParams(window.location.search);
-    const userChoice = urlParams.get('choice');
-    
-    // Select the appropriate ending text or a default message if none is found.
-    const endingText = endings[userChoice] || "You head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
-    
-    // Update the page content.
-    document.getElementById('ending-text').textContent = endingText + " Now, with your favorite booth explored, you head to the main stage. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
-  </script>
-
 </body>
 </html>
