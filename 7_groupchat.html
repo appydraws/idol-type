@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Concert Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .chat-bubble {
+      max-width: 80%;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .chat-bubble.sent {
+      background-color: #7c3aed; /* Purple-700 */
+      align-self: flex-end;
+      border-bottom-right-radius: 0.5rem;
+    }
+    .chat-bubble.received {
+      background-color: #4b5563; /* Gray-600 */
+      align-self: flex-start;
+      border-bottom-left-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
+  
+  <div class="flex-grow flex items-center justify-center p-4">
+    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+      
+      <div id="story-content">
+        <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4">The Group Chat</h2>
+        <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8">
+          Your phone buzzes. It's the group chat. The notifications are lighting up your lock screen. It's time to find your friends.
+        </p>
+
+        <div id="chat-container" class="w-full flex flex-col space-y-4 text-left p-4 bg-white/5 rounded-2xl overflow-y-auto max-h-96 mb-6">
+          <!-- Chat messages will be dynamically added here -->
+        </div>
+
+        <div id="options-container" class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = [
+      { sender: "You", text: "Hey! I'm here at the main gate. Where are you guys?" },
+      { sender: "Chloe", text: "Finally! We're by the giant inflatable mascot near the merch booths. Just past the food trucks." },
+      { sender: "Leo", text: "Yeah, the line for merch is insane already. 😂 But the food trucks smell amazing." },
+      { sender: "Chloe", text: "Hurry! The show starts soon and we still need to grab our posters!" },
+    ];
+
+    const pages = [
+      // Page 1: Group chat interaction
+      {
+        title: "The Group Chat",
+        text: "Your phone buzzes. It's the group chat. The notifications are lighting up your lock screen. It's time to find your friends.",
+        actions: [
+          { text: "Read the messages", action: loadChat },
+        ]
+      },
+      // Page 2: Finding friends (post-chat)
+      {
+        title: "Finding the Crew",
+        text: "You read Chloe's message and quickly reply. The giant inflatable mascot is easy to spot. A wave of relief washes over you as you see your friends waving excitedly. You're finally together.",
+        actions: [
+          { text: "Head to the booths", action: showBooths },
+        ]
+      }
+    ];
+
+    let currentPage = 0;
+
+    function addChatMessages() {
+      const chatContainer = document.getElementById('chat-container');
+      chatMessages.forEach((msg, index) => {
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = `${msg.sender}: ${msg.text}`;
+        msgDiv.className = `chat-bubble text-sm sm:text-base ${msg.sender === "You" ? 'sent' : 'received'}`;
+        chatContainer.appendChild(msgDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      });
+    }
+
+    function loadPage(pageIndex) {
+      const storyTitle = document.getElementById('story-title');
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+      const chatContainer = document.getElementById('chat-container');
+      
+      storyTitle.textContent = pages[pageIndex].title;
+      storyText.textContent = pages[pageIndex].text;
+
+      optionsContainer.innerHTML = '';
+      chatContainer.style.display = 'none';
+
+      pages[pageIndex].actions.forEach(option => {
+        const button = document.createElement('button');
+        button.textContent = option.text;
+        button.onclick = option.action;
+        button.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function loadChat() {
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+      const chatContainer = document.getElementById('chat-container');
+      
+      storyText.textContent = "You open your messages, a new one appearing as you watch.";
+      chatContainer.style.display = 'flex';
+      addChatMessages();
+      optionsContainer.innerHTML = '';
+
+      const nextButton = document.createElement('button');
+      nextButton.textContent = "Find your friends";
+      nextButton.onclick = () => {
+        currentPage = 1;
+        loadPage(currentPage);
+      };
+      nextButton.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+      optionsContainer.appendChild(nextButton);
+    }
+
+    function showBooths() {
+      const storyTitle = document.getElementById('story-title');
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+      
+      storyTitle.textContent = "Booths and Fan Fun";
+      storyText.textContent = "Alright, now that you're all together, Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?'";
+
+      optionsContainer.innerHTML = '';
+
+      const merchButton = document.createElement('button');
+      merchButton.textContent = "Head to the merch booth first";
+      merchButton.onclick = () => showFinalPage("merch");
+      merchButton.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+      optionsContainer.appendChild(merchButton);
+
+      const fanZoneButton = document.createElement('button');
+      fanZoneButton.textContent = "Let's check out the fan experience zone";
+      fanZoneButton.onclick = () => showFinalPage("fan_zone");
+      fanZoneButton.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+      optionsContainer.appendChild(fanZoneButton);
+    }
+
+    function showFinalPage(choice) {
+      const storyTitle = document.getElementById('story-title');
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+
+      storyTitle.textContent = "The Main Event";
+      optionsContainer.innerHTML = '';
+      
+      if (choice === "merch") {
+        storyText.textContent = "You and your friends brave the long merch line, but it's worth it. You snag the last limited edition tour shirt and a matching hoodie. With your haul in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
+      } else {
+        storyText.textContent = "You and your friends head to the fan experience zone, where you play a trivia game about the band. You win a signed poster! With your prize in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.";
+      }
+
+      const restartButton = document.createElement('button');
+      restartButton.textContent = "Start Over";
+      restartButton.onclick = () => window.location.reload();
+      restartButton.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg mt-6";
+      optionsContainer.appendChild(restartButton);
+    }
+
+    window.onload = () => loadPage(currentPage);
+  </script>
+
+</body>
+</html>
