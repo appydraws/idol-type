@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Concert Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white min-h-screen flex flex-col">
+  
+  <div class="flex-grow flex items-center justify-center p-4">
+    <div class="max-w-xl w-full bg-white/10 backdrop-blur-sm rounded-3xl shadow-lg p-8 flex flex-col items-center text-center border border-white/20">
+      <h2 id="story-title" class="text-3xl sm:text-4xl font-bold mb-4 transition-colors duration-500"></h2>
+      <p id="story-text" class="text-lg sm:text-xl leading-relaxed mb-8 transition-opacity duration-500"></p>
+
+      <div id="options-container" class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8"></div>
+
+      <button id="next-button" onclick="nextPage()" class="bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg hidden">
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    const pages = [
+      // Page 1: At the venue gate and checking the group chat
+      {
+        title: "At the Venue Gate",
+        text: "You're finally here. The line for the main gate stretches out, filled with a sea of fellow fans. The low buzz of conversation is punctuated by excited shouts as people take photos. You pull out your phone, and the group chat is already buzzing.",
+        options: [
+          { text: "Check the group chat", action: () => nextPage() }
+        ]
+      },
+      // Page 2: Finding friends
+      {
+        title: "Finding the Crew",
+        text: "You find a moment to check your phone. The group chat is a mix of memes and 'where are you' messages. You spot Chloe's message with a picture of a giant light-up sign. 'Look for us by the main gate!' The race is on.",
+        options: [
+          { text: "Look for your friends", action: () => nextPage() }
+        ]
+      },
+      // Page 3: Choosing a booth
+      {
+        title: "Booths and Fan Fun",
+        text: "You spot your friends and rush to them, exchanging high-fives and hugs. 'Alright,' Leo says, 'before we get in line, we have to hit the booths! The merch line is a beast, but have you seen the fan experience zone?'",
+        options: [
+          { text: "Head to the merch booth first", action: () => showFinalPage("merch") },
+          { text: "Let's check out the fan experience zone", action: () => showFinalPage("fan_zone") }
+        ]
+      },
+      // Page 4: The final page (Merch Booth ending)
+      {
+        title: "The Main Event",
+        text: "You and your friends brave the long merch line, but it's worth it. You snag the last limited edition tour shirt and a matching hoodie. With your haul in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.",
+        buttonText: "Start Over"
+      },
+      // Page 5: The final page (Fan Zone ending)
+      {
+        title: "The Main Event",
+        text: "You and your friends head to the fan experience zone, where you play a trivia game about the band. You win a signed poster! With your prize in hand, you head to the main gate. The music is a low thrumming that shakes the ground. The first chords of the song begin to play, and the stage lights up in a glorious flash of color.",
+        buttonText: "Start Over"
+      }
+    ];
+
+    let currentPage = 0;
+
+    function loadPage(pageIndex) {
+      const storyTitle = document.getElementById('story-title');
+      const storyText = document.getElementById('story-text');
+      const optionsContainer = document.getElementById('options-container');
+      const nextButton = document.getElementById('next-button');
+      
+      storyTitle.textContent = pages[pageIndex].title;
+      storyText.textContent = pages[pageIndex].text;
+
+      optionsContainer.innerHTML = '';
+      nextButton.classList.add('hidden');
+
+      if (pages[pageIndex].options) {
+        pages[pageIndex].options.forEach(option => {
+          const button = document.createElement('button');
+          button.textContent = option.text;
+          button.onclick = option.action;
+          button.className = "bg-yellow-400 text-black font-semibold text-sm sm:text-base py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg";
+          optionsContainer.appendChild(button);
+        });
+      } else {
+        nextButton.textContent = pages[pageIndex].buttonText;
+        nextButton.onclick = () => window.location.reload();
+        nextButton.classList.remove('hidden');
+      }
+    }
+
+    function nextPage() {
+      currentPage++;
+      if (currentPage < pages.length) {
+        loadPage(currentPage);
+      }
+    }
+
+    function showFinalPage(choice) {
+      if (choice === "merch") {
+        loadPage(3); // Load merch ending page
+      } else {
+        loadPage(4); // Load fan zone ending page
+      }
+    }
+
+    window.onload = () => loadPage(currentPage);
+  </script>
+
+</body>
+</html>
